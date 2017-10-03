@@ -28,7 +28,9 @@
         function (data) {
           var post = data.shift();
           $("#quote-content").html(post.content);
-          $("#quote-title").html("&mdash; " + post.title);
+          $("#quote-author").html("&mdash; " + post.title);
+          var content = $(post.content).text().trim();
+          $("#tweet-link").attr("href", 'https://twitter.com/intent/tweet?text=%22' + content + '%22%20' + post.title);
         },
         function () {
           console.log("Quote fetch failed.");
