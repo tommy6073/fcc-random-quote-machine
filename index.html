@@ -21,22 +21,33 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-  $(document).ready(function () {
+  function fetchQuote() {
     $.ajax({
       url: "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1",
       cache: false
     })
       .then(
         function (data) {
-          var post = data.shift();
-          $("#quote-content").html(post.content);
-          $("#quote-author").html("&mdash; " + post.title);
+          $("#quote").fadeOut("slow", function () {
+            var post = data.shift();
+            $("#quote-content").html(post.content);
+            $("#quote-author").html("&mdash; " + post.title);
+          });
+          $("#quote").fadeIn("slow");
           var content = $(post.content).text().trim();
           $("#tweet-link").attr("href", 'https://twitter.com/intent/tweet?text=%22' + content + '%22%20' + post.title);
         },
         function () {
           console.log("Quote fetch failed.");
         });
+  }
+
+  $(document).ready(function () {
+    fetchQuote();
+  });
+
+  $("#new-quote").click(function () {
+    fetchQuote();
   });
 </script>
 </body>
