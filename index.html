@@ -7,8 +7,16 @@
   <title>Random Quote Machine</title>
 </head>
 <body>
-<div id="quote-content"></div>
-<div id="quote-title"></div>
+<main>
+  <div id="quote-box">
+    <div id="quote-content"></div>
+    <div id="quote-author"></div>
+    <div id="quote-bottom">
+      <a id="tweet-link" target="_blank"><i class="fa fa-twitter" id="tweet-button" aria-hidden="true"></i></a>
+      <div id="new-quote">New quote</div>
+    </div>
+  </div>
+</main>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
   $(document).ready(function () {
